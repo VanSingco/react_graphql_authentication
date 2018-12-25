@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import './component/variable';
+@import './component/mixin';
+@import './component/navbar';
+@import './component/card';
+@import './component/form';
+@import './component/button';
+@import './component/utils';
+@import './page/login_signup';
+
+body{
+    font-family: 'Roboto', sans-serif;
+}

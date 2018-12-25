@@ -1,0 +1,5 @@
+@mixin linear-gradient($primary-light, $primary) {
+    background: -webkit-linear-gradient(to right, $primary-light, $primary); 
+    background: -ms-linear-gradient(to right, $primary-light, $primary); 
+    background: linear-gradient(to right, $primary-light, $primary);
+  }

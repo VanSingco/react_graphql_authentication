@@ -1,0 +1,11 @@
+.bg-login-signup{
+    @include linear-gradient($primary-light, $primary);
+    width: 100%;
+    height: 100vh;
+}
+
+.login_signup{
+    width: 100%;
+    height: 100vh;
+}
+

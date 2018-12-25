@@ -1,0 +1,33 @@
+a{
+    color: var(--primary);
+    text-decoration: none;
+    &:hover{
+        color: var(--primary-light);
+        text-decoration: none;
+    }
+}
+
+.footer-text{
+    text-align: center;
+    h6{
+        font-size: .8571em;
+    }
+}
+
+.alert-danger{
+    background-color: var(--danger);
+    color: #fff;
+    box-shadow: 0 10px 50px 0 rgba(0,0,0,.2);
+    border: 1px solid transparent;
+}
+
+.profile_letter{
+    background-color: var(--primary);
+    color: #fff;
+    width: 35px;
+    height: 35px;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
