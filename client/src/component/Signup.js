@@ -74,7 +74,7 @@ class Signup extends Component {
                             <div className="footer-text mt-3">
                                 <div className="d-flex justify-content-between">
                                     <h6>Already have an account? <Link to="/login">Login.</Link></h6>
-                                    <h6><Link to="/">Forgot account?</Link></h6>
+                                    <h6><Link to="/reset-password">Forgot account?</Link></h6>
                                 </div>
                             </div>
                         </div>

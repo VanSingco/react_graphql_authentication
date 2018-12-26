@@ -3,29 +3,27 @@ import { graphql } from "react-apollo";
 import { Link } from "react-router-dom";
 import gql from 'graphql-tag';
 
-class Login extends Component {
+class ResetPassword extends Component {
 
     state = {
         email: '',
-        password: '',
-        error: ''
+        error: '',
+        success: ''
     }
 
     onSubmet = (e) => {
         e.preventDefault();
-        console.log(this.props)
-        const {email, password} = this.state
+        const {email} = this.state
 
-        if (email === '' && password === '') {
-            return this.setState({error: 'Email and Password are required!'})
+        if (email === '') {
+            return this.setState({error: 'Email  are required!'})
         }
 
-        this.props.loginUserMutation({
-            variables: {email, password}
+        this.props.sendPasswordResetMutation({
+            variables: {email}
         }).then((res) => {
-            localStorage.setItem('token', res.data.loginUser.token)
-            this.setState({email: '', password: '', error: ''})
-            window.location.reload();
+            this.setState({email: '', error: '', success: 'Password reset token succeessfuly send please check your email inbox'})
+
         }).catch((err) => {
             const error = err.message.split(':')[1]
             this.setState({error})
@@ -45,8 +43,19 @@ class Login extends Component {
                     <div className="row justify-content-center ">
                         <div className="login_form col-lg-7 mt-5">
                                 <div className="mb-5 text-center mt-5">
-                                    <h1>Login</h1>
+                                    <h2 className="mb-3">Forgot your password?</h2>
+                                    <p>Enter your email address and we will send you instruction on how to reset your password.</p>
                                 </div>
+
+                                {this.state.success && (
+                                <div className="alert alert-success alert-dismissible fade show mb-4" role="alert">
+                                    <strong>{this.state.success}</strong>
+                                    <button type="button" className="close" data-dismiss="alert" aria-label="Close" onClick={() => this.setState({error: ''})}>
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                )}
+
                                 {this.state.error && (
                                 <div className="alert alert-danger alert-dismissible fade show mb-4" role="alert">
                                     <strong>{this.state.error}</strong>
@@ -59,13 +68,10 @@ class Login extends Component {
                                     <div className="form-group">
                                         <input type="email" onChange={(e) => this.setState({email: e.target.value})} value={this.state.email} className="form-control" placeholder="Email"/>
                                     </div>
-                                    <div className="form-group">
-                                        <input type="password" onChange={(e) => this.setState({password: e.target.value})} value={this.state.password} className="form-control" placeholder="Password"/>
-                                    </div>
-                                    <button type="submit" className="btn btn-primary btn-block">Login</button>
+                                    <button type="submit" className="btn btn-primary btn-block">Send Email</button>
                                 </form>
                                 <div className="footer-text mt-3">
-                                    <h6>Don't have an account? <Link to="/signup">Signup Here.</Link></h6>
+                                    <h6>Already have an account? <Link to="/login">Login Here.</Link></h6>
                                 </div>
                             </div>
                         </div>
@@ -78,18 +84,10 @@ class Login extends Component {
   }
 }
 
-const LOGIN_USER_MUTATION = gql`
-    mutation LoginUserMutation($email: String!, $password: String!){
-        loginUser(data: {
-            email: $email, 
-            password:$password
-        }){
-            user{
-                id
-            }
-            token
-        }
+const SEND_PASSWORD_RESET = gql`
+    mutation SendPasswordReset($email: String!){
+        sendPasswordReset(email: $email){ id }
     }
 `;
 
-export default graphql(LOGIN_USER_MUTATION, {name: 'loginUserMutation'})(Login)
+export default graphql(SEND_PASSWORD_RESET, {name: 'sendPasswordResetMutation'})(ResetPassword)

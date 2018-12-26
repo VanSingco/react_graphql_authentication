@@ -1,5 +1,5 @@
 # source: http://192.168.99.100:4466
-# timestamp: Mon Dec 24 2018 19:23:14 GMT+0800 (Philippine Standard Time)
+# timestamp: Wed Dec 26 2018 05:30:44 GMT+0800 (Philippine Standard Time)
 
 type AggregateUser {
   count: Int!
@@ -79,6 +79,8 @@ type User implements Node {
   bio: String
   gender: String
   password: String!
+  passwordResetToken: String
+  passwordResetExpires: DateTime
   updatedAt: DateTime!
   createdAt: DateTime!
 }
@@ -101,6 +103,8 @@ input UserCreateInput {
   bio: String
   gender: String
   password: String!
+  passwordResetToken: String
+  passwordResetExpires: DateTime
 }
 
 """An edge in a connection."""
@@ -129,6 +133,10 @@ enum UserOrderByInput {
   gender_DESC
   password_ASC
   password_DESC
+  passwordResetToken_ASC
+  passwordResetToken_DESC
+  passwordResetExpires_ASC
+  passwordResetExpires_DESC
   updatedAt_ASC
   updatedAt_DESC
   createdAt_ASC
@@ -144,6 +152,8 @@ type UserPreviousValues {
   bio: String
   gender: String
   password: String!
+  passwordResetToken: String
+  passwordResetExpires: DateTime
   updatedAt: DateTime!
   createdAt: DateTime!
 }
@@ -195,6 +205,8 @@ input UserUpdateInput {
   bio: String
   gender: String
   password: String
+  passwordResetToken: String
+  passwordResetExpires: DateTime
 }
 
 input UserWhereInput {
@@ -526,6 +538,68 @@ input UserWhereInput {
 
   """All values not ending with the given string."""
   password_not_ends_with: String
+  passwordResetToken: String
+
+  """All values that are not equal to given value."""
+  passwordResetToken_not: String
+
+  """All values that are contained in given list."""
+  passwordResetToken_in: [String!]
+
+  """All values that are not contained in given list."""
+  passwordResetToken_not_in: [String!]
+
+  """All values less than the given value."""
+  passwordResetToken_lt: String
+
+  """All values less than or equal the given value."""
+  passwordResetToken_lte: String
+
+  """All values greater than the given value."""
+  passwordResetToken_gt: String
+
+  """All values greater than or equal the given value."""
+  passwordResetToken_gte: String
+
+  """All values containing the given string."""
+  passwordResetToken_contains: String
+
+  """All values not containing the given string."""
+  passwordResetToken_not_contains: String
+
+  """All values starting with the given string."""
+  passwordResetToken_starts_with: String
+
+  """All values not starting with the given string."""
+  passwordResetToken_not_starts_with: String
+
+  """All values ending with the given string."""
+  passwordResetToken_ends_with: String
+
+  """All values not ending with the given string."""
+  passwordResetToken_not_ends_with: String
+  passwordResetExpires: DateTime
+
+  """All values that are not equal to given value."""
+  passwordResetExpires_not: DateTime
+
+  """All values that are contained in given list."""
+  passwordResetExpires_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  passwordResetExpires_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  passwordResetExpires_lt: DateTime
+
+  """All values less than or equal the given value."""
+  passwordResetExpires_lte: DateTime
+
+  """All values greater than the given value."""
+  passwordResetExpires_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  passwordResetExpires_gte: DateTime
   updatedAt: DateTime
 
   """All values that are not equal to given value."""

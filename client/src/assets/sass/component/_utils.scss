@@ -21,6 +21,13 @@ a{
     border: 1px solid transparent;
 }
 
+.alert-success{
+    background-color: var(--success);
+    color: #fff;
+    box-shadow: 0 10px 50px 0 rgba(0,0,0,.2);
+    border: 1px solid transparent;
+}
+
 .profile_letter{
     background-color: var(--primary);
     color: #fff;

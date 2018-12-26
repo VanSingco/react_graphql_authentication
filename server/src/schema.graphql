@@ -9,6 +9,9 @@ type Mutation {
     createUser(data: CreateUserInput!) : AuthPayload!
     deleteUser: User!
     updateUser(data: UpdateUserInput!) : User!
+    sendPasswordReset(email: String!): User
+    passwordReset(token: String!, password: String!): User
+
 }
 
 type AuthPayload {
@@ -45,6 +48,8 @@ type User {
     password: String!
     bio: String
     gender: String
+    passwordResetToken: String
+    passwordResetExpires: String
     updatedAt: String!
     createdAt: String!
 }

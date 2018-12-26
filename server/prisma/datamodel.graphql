@@ -7,6 +7,9 @@ type User {
   bio: String
   gender: String
   password: String!
+  passwordResetToken: String
+  passwordResetExpires: DateTime 
   updatedAt: DateTime!
   createdAt: DateTime!
 }
+
